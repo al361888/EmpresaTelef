@@ -73,7 +73,7 @@ public class Inicio {
 
     }
 
-    private static String inputInfo(String dato){
+    /*private static String inputInfo(String dato){
         String eleccion = null;
         Scanner scan = new Scanner(System.in);
         try {
@@ -82,7 +82,7 @@ public class Inicio {
             System.exit(0);
         }
         return eleccion;
-    }
+    }*/
 
     private static int tipoCliente(){
         return 0;
@@ -93,6 +93,21 @@ public class Inicio {
         System.out.println("¿Qué tipo de cliente eres?");
         System.out.println("(1) Particular");
         System.out.println("(2) Empresa");
+        int eleccion = 0;
+        Scanner scan = new Scanner(System.in);
+        try {
+            eleccion = scan.nextInt();
+        }catch (Exception e){
+            System.exit(0);
+        }
+        if (eleccion == 1){
+
+        }else if (eleccion == 2){
+
+        }else{
+            System.out.println("Por favor, elige una opción válida.");
+        }
+
 
     }
 
