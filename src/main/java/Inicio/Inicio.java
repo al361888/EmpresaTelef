@@ -74,7 +74,14 @@ public class Inicio {
     }
 
     private static String inputInfo(String dato){
-
+        String eleccion = null;
+        Scanner scan = new Scanner(System.in);
+        try {
+            eleccion = scan.next();
+        }catch (Exception e){
+            System.exit(0);
+        }
+        return eleccion;
     }
 
     private static int tipoCliente(){
@@ -83,7 +90,10 @@ public class Inicio {
         
 
     private static void altaCliente() {
-        
+        System.out.println("¿Qué tipo de cliente eres?");
+        System.out.println("(1) Particular");
+        System.out.println("(2) Empresa");
+
     }
 
     private static void borradoCliente() {
