@@ -66,7 +66,7 @@ public class Inicio {
                     importeFactura();
                     break;
                 case 9:
-                    mostrarFacura();
+                    mostrarFactura();
                     break;
                 case 10:
                     listaFacturas();
@@ -130,27 +130,34 @@ public class Inicio {
             System.out.println("Por favor, elige una opción válida.");
             return false;
         }
-
         return true;
     }
 
 
 
     private static void borradoCliente() {
-
-
+        System.out.println("Escribe el DNI del cliente que quieras eliminar.");
+        String dniABorrar = inputDato("DNI: ");
+        Cliente bye = listaClientes.encontrarCliente(dniABorrar);
+        listaClientes.borrarCliente(bye);
     }
 
     private static void cambioTarifa() {
-
+        System.out.println("Escribe el DNI del cliente que quieras cambiar de tarifa.");
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        cliente.setTarifa(inputDato("¿Qué tarifa eliges?: "));
     }
 
     private static void recuperarDatosNIF(){
-
+        System.out.println("Escribe el DNI del cliente del cual quieres saber sus datos.");
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        cliente.toString();
     }
 
     private static void recuperarListaClientes() {
-
+        listaClientes.toString();
     }
 
     private static void altaLlamada() {
@@ -165,7 +172,7 @@ public class Inicio {
 
     }
 
-    private static void mostrarFacura() {
+    private static void mostrarFactura() {
 
     }
 
