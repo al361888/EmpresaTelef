@@ -32,9 +32,9 @@ public abstract class Cliente implements Fecha{
         email = null;
         fechaAlta = new Date();
         direccion = new Direccion();
-        tarifa = null;
-        llamadas = null;
-        facturas = null;
+        tarifa = new Tarifa();
+        llamadas = new HashSet<Llamada>();
+        facturas = new HashMap<String, Factura>();
     }
 
     public Cliente(String nombre, String NIF,String email, Direccion direccion){

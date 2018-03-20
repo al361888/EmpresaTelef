@@ -1,6 +1,7 @@
 package Inicio;
 
 import cliente.Cliente;
+import cliente.Particular;
 
 import java.util.Scanner;
 
@@ -73,36 +74,40 @@ public class Inicio {
 
     }
 
-    /*private static String inputInfo(String dato){
-        String eleccion = null;
+
+    private static String inputDato(String mensaje){
         Scanner scan = new Scanner(System.in);
+        String eleccion = "";
         try {
-            eleccion = scan.next();
+            System.out.println(mensaje);
+            eleccion = scan.nextLine();
         }catch (Exception e){
-            System.exit(0);
+            return eleccion;
         }
         return eleccion;
-    }*/
-
-    private static int tipoCliente(){
-        return 0;
     }
-        
+
+    private static void rellenarDireccion(){
+
+    }
+    private static void rellenarParticular(Particular p){
+        p.setNIF(inputDato("NIF: "));
+        p.setNombre(inputDato("Nombre: "));
+        p.setApellidos(inputDato("Apellidos: "));
+        p.setEmail(inputDato("Email: "));
+    }
 
     private static void altaCliente() {
         System.out.println("¿Qué tipo de cliente eres?");
         System.out.println("(1) Particular");
         System.out.println("(2) Empresa");
-        int eleccion = 0;
-        Scanner scan = new Scanner(System.in);
-        try {
-            eleccion = scan.nextInt();
-        }catch (Exception e){
-            System.exit(0);
-        }
-        if (eleccion == 1){
+        String eleccion = "";
+        eleccion = inputDato("Elige: ");
+        if (eleccion == "1"){
+            Particular nuevo = new Particular();
+            rellenarParticular(nuevo);
 
-        }else if (eleccion == 2){
+        }else if (eleccion == "2"){
 
         }else{
             System.out.println("Por favor, elige una opción válida.");
