@@ -26,7 +26,7 @@ public class ClienteManager {
         }
     }
 
-    public boolean borrarCliente(Cliente c){//Meh
+    public boolean borrarCliente(Cliente c){
         if(c==null)
             return false;
         else{
@@ -39,8 +39,11 @@ public class ClienteManager {
 
     }
 
-    public void encontrarCliente(String nif){//Completar
-
+    public Cliente encontrarCliente(String nif){
+        if (clientes.containsKey(nif)){
+            return clientes.get(nif);
+        }
+        return null;
     }
 
 

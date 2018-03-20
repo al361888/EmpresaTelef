@@ -1,11 +1,16 @@
 package Inicio;
 
+import Direccion.Direccion;
 import cliente.Cliente;
+import cliente.ClienteManager;
+import cliente.Empresa;
 import cliente.Particular;
 
 import java.util.Scanner;
 
 public class Inicio {
+
+    private static ClienteManager listaClientes;
 
     public static void main( String[] args){
         Scanner scan = new Scanner(System.in);
@@ -87,36 +92,52 @@ public class Inicio {
         return eleccion;
     }
 
-    private static void rellenarDireccion(){
-
+    private static void rellenarDireccion(Direccion d){
+        d.setCp(inputDato("Código postal: "));
+        d.setPoblacion(inputDato("Población: "));
+        d.setProvincia(inputDato("Provincia: "));
     }
+
     private static void rellenarParticular(Particular p){
         p.setNIF(inputDato("NIF: "));
         p.setNombre(inputDato("Nombre: "));
         p.setApellidos(inputDato("Apellidos: "));
         p.setEmail(inputDato("Email: "));
+        rellenarDireccion(p.getDireccion());
     }
 
-    private static void altaCliente() {
+    private static void rellenarEmpresa(Empresa e) { //Optimizar
+        e.setNIF(inputDato("NIF: "));
+        e.setNombre(inputDato("Nombre: "));
+        e.setEmail(inputDato("Email: "));
+        rellenarDireccion(e.getDireccion());
+    }
+
+    private static boolean altaCliente() {
         System.out.println("¿Qué tipo de cliente eres?");
         System.out.println("(1) Particular");
         System.out.println("(2) Empresa");
         String eleccion = "";
-        eleccion = inputDato("Elige: ");
+        eleccion = inputDato("Escribe el número correspondiente a la opción deseada: ");
         if (eleccion == "1"){
             Particular nuevo = new Particular();
             rellenarParticular(nuevo);
-
+            listaClientes.nuevoCliente(nuevo);
         }else if (eleccion == "2"){
-
+            Empresa nuevo = new Empresa();
+            rellenarEmpresa(nuevo);
         }else{
             System.out.println("Por favor, elige una opción válida.");
+            return false;
         }
 
-
+        return true;
     }
 
+
+
     private static void borradoCliente() {
+
 
     }
 
