@@ -1,6 +1,8 @@
 package Inicio;
 
 import Direccion.Direccion;
+import Factura.Factura;
+import Tarifa.Tarifa;
 import cliente.Cliente;
 import cliente.ClienteManager;
 import cliente.Empresa;
@@ -12,7 +14,7 @@ public class Inicio {
 
     private static ClienteManager listaClientes;
 
-    public static void main( String[] args){
+    public static void menu(){
         Scanner scan = new Scanner(System.in);
         int eleccion;
         while (true){
@@ -134,7 +136,6 @@ public class Inicio {
     }
 
 
-
     private static void borradoCliente() {
         System.out.println("Escribe el DNI del cliente que quieras eliminar.");
         String dniABorrar = inputDato("DNI: ");
@@ -146,7 +147,9 @@ public class Inicio {
         System.out.println("Escribe el DNI del cliente que quieras cambiar de tarifa.");
         String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
-        cliente.setTarifa(inputDato("¿Qué tarifa eliges?: "));
+        double precio = Double.parseDouble(inputDato("¿Qué tarifa eliges?: "));
+        Tarifa tarifa = new Tarifa(precio);
+        cliente.setTarifa(tarifa);
     }
 
     private static void recuperarDatosNIF(){
@@ -165,19 +168,39 @@ public class Inicio {
     }
 
     private static void listaLlamadas() {
-
+        System.out.println("¿De quién quieres ver la lista de llamadas?");
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        cliente.getLlamadas().toString();
     }
 
     private static void importeFactura() {
-
+        String cod = inputDato("Código de factura: ");
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        Factura factura = cliente.encontrarFactura(cod);
+        double importe = factura.getImporte();
+        System.out.println(importe);
     }
 
-    private static void mostrarFactura() {
 
+
+    private static void mostrarFactura() {
+        String cod = inputDato("Código de factura: ");
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        cliente.encontrarFactura(cod).toString();
     }
 
     private static void listaFacturas() {
+        System.out.println("¿De quién quieres ver la lista de facturas?");
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        cliente.getFacturas().toString();
+    }
 
+    public static void main(String [ ] args){
+        menu();
     }
 
 }

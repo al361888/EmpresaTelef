@@ -119,6 +119,12 @@ public abstract class Cliente implements Fecha{
         }
     }
 
+    public Factura encontrarFactura(String cod){
+        if (facturas.containsKey(cod)){
+            return facturas.get(cod);
+        }
+        return null;
+    }
 
     public HashSet<Llamada> getLlamadas() {
         return llamadas;
