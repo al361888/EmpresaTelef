@@ -2,13 +2,17 @@ package Inicio;
 
 import Direccion.Direccion;
 import Factura.Factura;
+import Fecha.Fecha;
+import Llamada.Llamada;
 import Tarifa.Tarifa;
 import cliente.Cliente;
 import cliente.ClienteManager;
 import cliente.Empresa;
 import cliente.Particular;
 
-import java.util.Scanner;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 public class Inicio {
 
@@ -184,7 +188,6 @@ public class Inicio {
     }
 
 
-
     private static void mostrarFactura() {
         String cod = inputDato("Código de factura: ");
         String dni = inputDato("DNI: ");
@@ -199,7 +202,67 @@ public class Inicio {
         cliente.getFacturas().toString();
     }
 
-    public static void main(String [ ] args){
+
+    //FUNCIÓN GENÉRICA
+    private static <T> Collection<T> metodoGenerico(Collection<? extends Fecha> c, Date inicio, Date fin) {
+        Collection<T> datos = new HashSet<T>();
+        for (Fecha elemento : c) {
+            if (elemento.getFecha().after(inicio) && elemento.getFecha().before(fin)) {
+                datos.add((T) elemento);
+            }
+        }
+        return datos;
+    }
+
+
+    private static Date inputFecha(){
+        String fecha = inputDato("Fecha(dd/mm/yyyy): ");
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        Date result = new Date();
+        try {
+            result = format.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    private static Collection<Cliente> listadoClientes(){//Faltan los print
+        Date inicio = inputFecha();
+        Date fin = inputFecha();
+        HashSet<Cliente> clientes = new HashSet<Cliente>();
+        listaClientes.getClientes().forEach((k,v) -> clientes.add(v));
+        Collection<Cliente> result = metodoGenerico(clientes, inicio, fin);
+        return result;
+    }
+
+    private static Collection<Llamada> listadoLlamadas(){//Faltan los print
+        Date inicio = inputFecha();
+        Date fin = inputFecha();
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        HashSet<Llamada> llamadas = cliente.getLlamadas();
+        Collection<Llamada> result = metodoGenerico(llamadas, inicio, fin);
+        return result;
+    }
+
+    private static Collection<Factura> listadoFacturas(){//Faltan los print
+        Date inicio = inputFecha();
+        Date fin = inputFecha();
+        String dni = inputDato("DNI: ");
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+
+        HashMap<String,Factura> facturas = cliente.getFacturas();
+        HashSet<Factura> fac = new HashSet<Factura>();
+        facturas.forEach((k,v) -> fac.add(v));
+
+        Collection<Factura> result = metodoGenerico(fac, inicio, fin);
+        return result;
+    }
+
+
+    //MAIN
+    public static void main (String[ ]args){
         menu();
     }
 
