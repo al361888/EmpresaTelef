@@ -10,6 +10,7 @@ import cliente.ClienteManager;
 import cliente.Empresa;
 import cliente.Particular;
 
+import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -18,7 +19,7 @@ public class Inicio {
 
     private static ClienteManager listaClientes;
 
-    public static void menu(){
+    private static void menu(){
         Scanner scan = new Scanner(System.in);
         int eleccion;
         while (true){
@@ -260,6 +261,36 @@ public class Inicio {
         return result;
     }
 
+    public void guardarDatos() {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream("Clientes.bin");
+            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            oos.writeObject(listaClientes);
+            oos.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+        public  void cargarDatos() {
+        FileInputStream fis = null;
+        try {
+            fis = new FileInputStream("Clientes.bin");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            listaClientes = (ClienteManager) ois.readObject();
+            ois.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e2){
+            e2.printStackTrace();
+        } catch (ClassNotFoundException e3){
+            e3.printStackTrace();
+        }
+    }
 
     //MAIN
     public static void main (String[ ]args){
