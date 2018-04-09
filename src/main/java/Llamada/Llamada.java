@@ -1,5 +1,6 @@
 package Llamada;
 
+import Excepciones.MiExcepcion;
 import Fecha.Fecha;
 
 import java.sql.Time;
@@ -29,14 +30,16 @@ public class Llamada implements Fecha{
     }
 
     public void setFecha(Date fecha) {
-        this.fecha = fecha;
+            this.fecha = fecha;
     }
 
     public String getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(String numero) throws MiExcepcion {
+        if (numero.length()!=9)
+            throw new MiExcepcion();
         this.numero = numero;
     }
 

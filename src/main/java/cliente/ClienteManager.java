@@ -5,10 +5,12 @@ import java.util.HashMap;
 public class ClienteManager {
     private HashMap<String, Cliente> clientes;
 
-    public ClienteManager(){
-        HashMap<String,Cliente> clientes = new HashMap<String, Cliente>();
+    //Constructor
+    public ClienteManager() {
+        HashMap<String, Cliente> clientes = new HashMap<String, Cliente>();
     }
 
+    //Métodos
     public HashMap<String, Cliente> getClientes() {
         return clientes;
     }
@@ -17,20 +19,20 @@ public class ClienteManager {
         this.clientes = clientes;
     }
 
-    public boolean nuevoCliente(Cliente c){//Meh
-        if(c==null)
+    public boolean nuevoCliente(Cliente c) {//Meh
+        if (c == null)
             return false;
-        else{
-            clientes.put(c.getNIF(),c);
+        else {
+            clientes.put(c.getNIF(), c);
             return true;
         }
     }
 
-    public boolean borrarCliente(Cliente c){
-        if(c==null)
+    public boolean borrarCliente(Cliente c) {
+        if (c == null)
             return false;
-        else{
-            if(clientes.containsKey(c.getNIF())){
+        else {
+            if (clientes.containsKey(c.getNIF())) {
                 clientes.remove(c);
                 return true;
             } else
@@ -39,13 +41,11 @@ public class ClienteManager {
 
     }
 
-    public Cliente encontrarCliente(String nif){
-        if (clientes.containsKey(nif)){
+    public Cliente encontrarCliente(String nif) {
+        if (clientes.containsKey(nif)) {
             return clientes.get(nif);
         }
         return null;
     }
-
-
 
 }
