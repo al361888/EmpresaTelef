@@ -19,7 +19,7 @@ public class ClienteManager {
         this.clientes = clientes;
     }
 
-    public boolean nuevoCliente(Cliente c) {//Meh
+    public boolean nuevoCliente(Cliente c) {
         if (c == null)
             return false;
         else {

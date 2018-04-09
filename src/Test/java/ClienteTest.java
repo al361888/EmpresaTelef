@@ -1,5 +1,4 @@
 import cliente.Cliente;
-import cliente.ClienteManager;
 import cliente.Empresa;
 import Direccion.Direccion;
 import cliente.Particular;

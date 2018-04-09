@@ -6,7 +6,9 @@ import cliente.Particular;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static javafx.scene.input.KeyCode.V;
+import java.util.HashMap;
+import java.util.HashSet;
+
 import static org.junit.Assert.*;
 
 public class clienteManagerTest {
@@ -26,7 +28,8 @@ public class clienteManagerTest {
 
     @Test
     public void getClientesTest(){
-        assertEquals(lista, lista.getClientes());
+        HashMap<String,Cliente> clientes = new HashMap<String, Cliente>();
+        assertEquals(clientes, lista.getClientes());
     }
 
     @Test
