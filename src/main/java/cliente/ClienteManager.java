@@ -23,8 +23,12 @@ public class ClienteManager {
         if (c == null)
             return false;
         else {
-            clientes.put(c.getNIF(), c);
-            return true;
+            if (clientes.containsKey(c.getNIF()))
+                return false;
+            else {
+                clientes.put(c.getNIF(), c);
+                return true;
+            }
         }
     }
 

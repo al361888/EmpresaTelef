@@ -24,7 +24,7 @@ public class Inicio {
         Scanner scan = new Scanner(System.in);
         int eleccion;
         while (true) {
-            System.out.println("--FACTURAPPS--");
+            System.out.println("----FACTURAPPS----");
             System.out.println("¿Qué quieres hacer? (Pulsa el número correspondiente a la elección deseada)");
             System.out.println("(1) Nuevo cliente ");
             System.out.println("(2) Borrar cliente");
@@ -38,7 +38,8 @@ public class Inicio {
             System.out.println("(10) Recuperar facturas del cliente");
             System.out.println("(11) Mostrar clientes que operaron entre dos fechas");
             System.out.println("(12) Mostrar las llamadas de un cliente entre dos fechas");
-            System.out.println("(10) Mostrsr las facturas de un cliente entre dos fechas");
+            System.out.println("(13) Mostrsr las facturas de un cliente entre dos fechas");
+            System.out.println("(14) Salir (guardar datos)");
             System.out.println("Elige: ");
 
             while (true) {
@@ -90,6 +91,9 @@ public class Inicio {
                     break;
                 case 13:
                     listadoFacturas();
+                    break;
+                case 14:
+                    guardarDatos();
                     break;
                 default:
                     System.out.println("Elección no válida.");
@@ -324,7 +328,6 @@ public class Inicio {
     //MAIN
     public static void main(String[] args) {
         menu();
-        guardarDatos();
     }
 
 }
