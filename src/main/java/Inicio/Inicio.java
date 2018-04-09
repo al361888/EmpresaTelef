@@ -190,7 +190,14 @@ public class Inicio {
 
     //6
     private static void altaLlamada() {
-
+        System.out.println("¿De quién quieres dar de alta una llamada?");
+        String dni = inputDato("DNI: ");
+        String numero = inputDato("Número al cuál se realizó la llamada: ");
+        Date fecha = inputFecha();
+        Double duracion = Double.valueOf(inputDato("Duración de la llamada (en segundos): "));
+        Cliente cliente = listaClientes.encontrarCliente(dni);
+        Llamada llamada = new Llamada(numero,fecha,duracion);
+        cliente.añadirLlamada(llamada);
     }
 
     //7
@@ -254,26 +261,28 @@ public class Inicio {
     }
 
     //11
-    private static Collection<Cliente> listadoClientes() {//Faltan los print
+    private static void listadoClientes() {
         Date inicio = inputFecha();
         Date fin = inputFecha();
         HashSet<Cliente> clientes = new HashSet<Cliente>();
         listaClientes.getClientes().forEach((k, v) -> clientes.add(v));
-        return metodoGenerico(clientes, inicio, fin);
+        Collection<Cliente> resultado = metodoGenerico(clientes, inicio, fin);
+        resultado.toString();
     }
 
     //12
-    private static Collection<Llamada> listadoLlamadas() {//Faltan los print
+    private static void listadoLlamadas() {
         Date inicio = inputFecha();
         Date fin = inputFecha();
         String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         HashSet<Llamada> llamadas = cliente.getLlamadas();
-        return metodoGenerico(llamadas, inicio, fin);
+        Collection<Llamada> resultado = metodoGenerico(llamadas, inicio, fin);
+        resultado.toString();
     }
 
     //13
-    private static Collection<Factura> listadoFacturas() {//Faltan los print
+    private static void listadoFacturas() {
         Date inicio = inputFecha();
         Date fin = inputFecha();
         String dni = inputDato("DNI: ");
@@ -283,7 +292,8 @@ public class Inicio {
         HashSet<Factura> fac = new HashSet<Factura>();
         facturas.forEach((k, v) -> fac.add(v));
 
-        return metodoGenerico(fac, inicio, fin);
+        Collection<Llamada> resultado = metodoGenerico(fac, inicio, fin);
+        resultado.toString();
     }
 
     private static void guardarDatos() {
