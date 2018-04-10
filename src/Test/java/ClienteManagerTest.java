@@ -34,8 +34,8 @@ public class clienteManagerTest {
 
     @Test
     public void nuevoClienteTest(){
-        assertTrue("Insertando cliente", lista.nuevoCliente(miguel));
-        assertFalse("Volviendo a añadir al mismo cliente", lista.nuevoCliente(miguel));
+        lista.nuevoCliente(miguel);
+        assertEquals(miguel, lista.encontrarCliente("20902969V"))
     }
 
     @Test

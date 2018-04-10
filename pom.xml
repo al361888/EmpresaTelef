@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>es.uji.al361888</groupId>
-    <artifactId>Practica1</artifactId>
+    <artifactId>EmpresaTelef</artifactId>
     <version>1.0</version>
 
     <build>
