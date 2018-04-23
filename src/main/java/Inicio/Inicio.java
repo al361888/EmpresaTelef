@@ -1,6 +1,7 @@
 package Inicio;
 
 import direccion.Direccion;
+import excepciones.MiExcepcion;
 import fabrica_tarifa.FabricaTarifas;
 import factura.Factura;
 import fecha.Fecha;
@@ -15,6 +16,8 @@ import fabrica_clientes.FabricaClientes;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Inicio {
@@ -184,9 +187,35 @@ public class Inicio {
         System.out.println("Escribe el DNI del cliente que quieras cambiar de tarifa.");
         String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
-        double precio = Double.parseDouble(inputDato("¿Qué tarifa eliges?: "));
-        Tarifa tarifa = fabricaTarifas.getTarifa(precio);
-        cliente.setTarifa(tarifa);
+        if (cliente != null){
+            System.out.println("¿Qué tarifa quieres?");
+            System.out.println("Basica (1)");
+            System.out.println("Tarde (2)");
+            System.out.println("Fin de semana (3)");
+            int eleccion = Integer.parseInt(inputDato("Elige: "));
+            switch (eleccion){
+                case 1:
+                    Tarifa tarifa = fabricaTarifas.getBasica();
+                    cliente.setTarifa(tarifa);
+                    System.out.println("Tarifa cambiada correctamente.");
+                    break;
+                case 2:
+                    Tarifa matinal = fabricaTarifas.getTarde(cliente.getTarifa());
+                    cliente.setTarifa(matinal);
+                    System.out.println("Tarifa cambiada correctamente.");
+                    break;
+                case 3:
+                    Tarifa finSemana = fabricaTarifas.getFinSemana(cliente.getTarifa());
+                    cliente.setTarifa(finSemana);
+                    System.out.println("Tarifa cambiada correctamente.");
+                    break;
+                default:
+                    System.out.println("Elección no válida.");
+                    break;
+            }
+        }else {
+            System.out.println("El cliente especificado no existe.");
+        }
     }
 
     //4
@@ -202,15 +231,27 @@ public class Inicio {
         listaClientes.toString();
     }
 
+    private static Tarifa tarifaConveniente(Date fecha){
+        int hora = fecha.getHours();
+        int dia = fecha.getDay();
+        Tarifa tarifa = fabricaTarifas.getBasica();
+
+        if (dia == 0)
+            return fabricaTarifas.getFinSemana(tarifa);
+        else if(hora >12 && hora<23)
+            return fabricaTarifas.getTarde(tarifa);
+        
+        return tarifa;
+    }
     //6
-    private static void altaLlamada() {
+    private static void altaLlamada(){
         System.out.println("¿De quién quieres dar de alta una llamada?");
         String dni = inputDato("DNI: ");
         String numero = inputDato("Número al cuál se realizó la llamada: ");
         Date fecha = inputFecha();
         Double duracion = Double.valueOf(inputDato("Duración de la llamada (en segundos): "));
         Cliente cliente = listaClientes.encontrarCliente(dni);
-        Llamada llamada = new Llamada(numero,fecha,duracion);
+        Llamada llamada = new Llamada(numero,fecha,duracion,tarifaConveniente(fecha));
         cliente.anadirLlamada(llamada);
     }
 
@@ -251,11 +292,11 @@ public class Inicio {
 
 
     //FUNCIÓN GENÉRICA
-    private static <T> Collection<T> metodoGenerico(Collection<? extends Fecha> c, Date inicio, Date fin) {
-        Collection<T> datos = new HashSet<T>();
-        for (Fecha elemento : c) {
+    private static <T extends Fecha> Collection<T> metodoGenerico(Collection<T> c, Date inicio, Date fin) {
+        Collection<T> datos = new HashSet<>();
+        for (T elemento : c) {
             if (elemento.getFecha().after(inicio) && elemento.getFecha().before(fin)) {
-                datos.add((T) elemento);
+                datos.add(elemento);
             }
         }
         return datos;
@@ -278,7 +319,7 @@ public class Inicio {
     private static void listadoClientes() {
         Date inicio = inputFecha();
         Date fin = inputFecha();
-        HashSet<Cliente> clientes = new HashSet<Cliente>();
+        HashSet<Cliente> clientes = new HashSet<>();
         listaClientes.getClientes().forEach((k, v) -> clientes.add(v));
         Collection<Cliente> resultado = metodoGenerico(clientes, inicio, fin);
         resultado.toString();
@@ -303,10 +344,10 @@ public class Inicio {
         Cliente cliente = listaClientes.encontrarCliente(dni);
 
         HashMap<String, Factura> facturas = cliente.getFacturas();
-        HashSet<Factura> fac = new HashSet<Factura>();
+        HashSet<Factura> fac = new HashSet<>();
         facturas.forEach((k, v) -> fac.add(v));
 
-        Collection<Llamada> resultado = metodoGenerico(fac, inicio, fin);
+        Collection<Factura> resultado = metodoGenerico(fac, inicio, fin);
         resultado.toString();
     }
 

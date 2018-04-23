@@ -2,12 +2,13 @@ package factura;
 
 
 import fecha.Fecha;
+import tarifa.Tarifa;
 
 import java.util.Date;
 
 public class Factura implements Fecha{
     private String cod; //Único de cada factura
-    private String tarifa; //(€/min)
+    private Tarifa tarifa; //(€/min)
     private Date fechaEmision;
     private Date fechaInicio;
     private Date fechafin;
@@ -21,11 +22,11 @@ public class Factura implements Fecha{
         this.cod = cod;
     }
 
-    public String getTarifa() {
+    public Tarifa getTarifa() {
         return tarifa;
     }
 
-    public void setTarifa(String tarifa) {
+    public void setTarifa(Tarifa tarifa) {
         this.tarifa = tarifa;
     }
 

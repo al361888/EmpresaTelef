@@ -2,6 +2,7 @@ package llamada;
 
 import excepciones.MiExcepcion;
 import fecha.Fecha;
+import tarifa.Tarifa;
 
 import java.util.Date;
 
@@ -9,6 +10,7 @@ public class Llamada implements Fecha{
     private String numero;
     private Date fecha;
     private double duracion; //No muy claro el tipo de dato
+    private double importe;
 
     public Llamada(){
         numero = null;
@@ -16,10 +18,11 @@ public class Llamada implements Fecha{
         duracion = 0;
     }
 
-    public Llamada(String numero, Date fecha, double duracion){
+    public Llamada(String numero, Date fecha, Double duracion, Tarifa tarifa){
         this.numero = numero;
         this.fecha = fecha;
         this.duracion = duracion;
+        this.importe = tarifa.costeLlamada(this);
     }
 
     @Override
@@ -54,4 +57,11 @@ public class Llamada implements Fecha{
         return "Número : " + numero + "\nfecha: " + fecha + "\nDuración: " + duracion;
     }
 
+    public double getImporte() {
+        return importe;
+    }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
 }

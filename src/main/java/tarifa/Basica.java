@@ -5,7 +5,7 @@ import llamada.Llamada;
 public class Basica extends Tarifa {
 
     public Basica(){
-        super(0.20);
+        super(0.15);
     }
 
     //Calcular el coste de una llamada

@@ -4,6 +4,7 @@ import direccion.Direccion;
 import factura.Factura;
 import fecha.Fecha;
 import llamada.Llamada;
+import tarifa.Basica;
 import tarifa.Tarifa;
 
 import java.util.Date;
@@ -25,24 +26,24 @@ public abstract class Cliente implements Fecha{
     private HashMap<String,Factura> facturas;
 
     //Constructores
-    public Cliente(){
+    Cliente(){
         nombre = null;
         NIF = null;
         email = null;
         fechaAlta = new Date();
         direccion = new Direccion();
-        tarifa = new Tarifa();
+        tarifa = new Basica();
         llamadas = new HashSet<Llamada>();
         facturas = new HashMap<String, Factura>();
     }
 
-    public Cliente(String nombre, String NIF,String email, Direccion direccion){
+    Cliente(String nombre, String NIF, String email, Direccion direccion){
         this.nombre = nombre;
         this.NIF = NIF;
         this.email = email;
         this.fechaAlta = new Date();
         this.direccion = direccion;
-        this.tarifa = new Tarifa();
+        this.tarifa = new Basica();
         this.llamadas = new HashSet<>();
         this.facturas = new HashMap<>();
     }
@@ -61,7 +62,7 @@ public abstract class Cliente implements Fecha{
         this.nombre = nombre;
     }
 
-    public String getEmail() {
+    String getEmail() {
         return email;
     }
 
@@ -133,13 +134,8 @@ public abstract class Cliente implements Fecha{
         this.llamadas = llamadas;
     }
 
-    public boolean anadirLlamada(Llamada llamada){
-        if (llamada==null)
-            return false;
-        else{
+    public void anadirLlamada(Llamada llamada){
             llamadas.add(llamada);
-            return true;
-        }
     }
 
 

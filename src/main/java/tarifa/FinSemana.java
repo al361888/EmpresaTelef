@@ -2,12 +2,11 @@ package tarifa;
 
 import llamada.Llamada;
 
-public class Tarde extends Oferta{
+public class FinSemana extends Oferta{
 
-    public Tarde(Tarifa tarifa){
-        super(tarifa,0.15);
+    public FinSemana(Tarifa tarifa){
+        super(tarifa, 0.00);
     }
-
     @Override
     public double costeLlamada(Llamada llamada) {
         double anterior = getTarifa().costeLlamada(llamada);
