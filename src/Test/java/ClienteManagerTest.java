@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 import static org.junit.Assert.*;
 
-public class clienteManagerTest {
+public class ClienteManagerTest {
     private static Cliente miguel;
     private static Cliente ousama;
     private static ClienteManager lista;
