@@ -1,6 +1,6 @@
 import cliente.Cliente;
 import cliente.Empresa;
-import Direccion.Direccion;
+import direccion.Direccion;
 import cliente.Particular;
 import org.junit.BeforeClass;
 import org.junit.Test;

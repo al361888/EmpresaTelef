@@ -1,13 +1,12 @@
 import cliente.Cliente;
 import cliente.ClienteManager;
 import cliente.Empresa;
-import Direccion.Direccion;
+import direccion.Direccion;
 import cliente.Particular;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 import static org.junit.Assert.*;
 
@@ -35,7 +34,7 @@ public class clienteManagerTest {
     @Test
     public void nuevoClienteTest(){
         lista.nuevoCliente(miguel);
-        assertEquals(miguel, lista.encontrarCliente("20902969V"))
+        assertEquals(miguel, lista.encontrarCliente("20902969V"));
     }
 
     @Test

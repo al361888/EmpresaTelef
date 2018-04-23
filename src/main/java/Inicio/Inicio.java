@@ -1,14 +1,16 @@
 package Inicio;
 
-import Direccion.Direccion;
-import Factura.Factura;
-import Fecha.Fecha;
-import Llamada.Llamada;
-import Tarifa.Tarifa;
+import direccion.Direccion;
+import fabrica_tarifa.FabricaTarifas;
+import factura.Factura;
+import fecha.Fecha;
+import llamada.Llamada;
+import tarifa.Tarifa;
 import cliente.Cliente;
 import cliente.ClienteManager;
 import cliente.Empresa;
 import cliente.Particular;
+import fabrica_clientes.FabricaClientes;
 
 import java.io.*;
 import java.text.ParseException;
@@ -18,6 +20,8 @@ import java.util.*;
 public class Inicio {
 
     private static ClienteManager listaClientes;
+    private static FabricaClientes fabricaClientes;
+    private static FabricaTarifas fabricaTarifas;
 
     private static void menu() {
         cargarDatos();
@@ -122,18 +126,24 @@ public class Inicio {
     }
 
     private static void rellenarParticular(Particular p) {
-        p.setNIF(inputDato("NIF: "));
-        p.setNombre(inputDato("Nombre: "));
-        p.setApellidos(inputDato("Apellidos: "));
-        p.setEmail(inputDato("Email: "));
-        rellenarDireccion(p.getDireccion());
+        if (p!=null){
+            p.setNIF(inputDato("NIF: "));
+            p.setNombre(inputDato("Nombre: "));
+            p.setApellidos(inputDato("Apellidos: "));
+            p.setEmail(inputDato("Email: "));
+            rellenarDireccion(p.getDireccion());
+        } else
+            System.out.println("Parámetro nulo.");
     }
 
     private static void rellenarEmpresa(Empresa e) { //Optimizar
-        e.setNIF(inputDato("NIF: "));
-        e.setNombre(inputDato("Nombre: "));
-        e.setEmail(inputDato("Email: "));
-        rellenarDireccion(e.getDireccion());
+        if(e!=null){
+            e.setNIF(inputDato("NIF: "));
+            e.setNombre(inputDato("Nombre: "));
+            e.setEmail(inputDato("Email: "));
+            rellenarDireccion(e.getDireccion());
+        }else
+            System.out.println("Parámetro nulo.");
     }
 
     //1
@@ -145,13 +155,13 @@ public class Inicio {
         eleccion = inputDato("Escribe el número correspondiente a la opción deseada: ");
         switch (eleccion) {
             case "1": {
-                Particular nuevo = new Particular();
+                Particular nuevo = fabricaClientes.getParticular();
                 rellenarParticular(nuevo);
                 listaClientes.nuevoCliente(nuevo);
                 break;
             }
             case "2": {
-                Empresa nuevo = new Empresa();
+                Empresa nuevo = fabricaClientes.getEmpresa();
                 rellenarEmpresa(nuevo);
                 break;
             }
@@ -175,7 +185,7 @@ public class Inicio {
         String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         double precio = Double.parseDouble(inputDato("¿Qué tarifa eliges?: "));
-        Tarifa tarifa = new Tarifa(precio);
+        Tarifa tarifa = fabricaTarifas.getTarifa(precio);
         cliente.setTarifa(tarifa);
     }
 
@@ -201,7 +211,7 @@ public class Inicio {
         Double duracion = Double.valueOf(inputDato("Duración de la llamada (en segundos): "));
         Cliente cliente = listaClientes.encontrarCliente(dni);
         Llamada llamada = new Llamada(numero,fecha,duracion);
-        cliente.añadirLlamada(llamada);
+        cliente.anadirLlamada(llamada);
     }
 
     //7
@@ -253,7 +263,7 @@ public class Inicio {
 
 
     private static Date inputFecha() {
-        String fecha = inputDato("Fecha(dd/mm/yyyy): ");
+        String fecha = inputDato("fecha(dd/mm/yyyy): ");
         SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
         Date result = new Date();
         try {

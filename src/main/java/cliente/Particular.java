@@ -1,6 +1,6 @@
 package cliente;
 
-import Direccion.Direccion;
+import direccion.Direccion;
 
 import java.util.Date;
 
@@ -36,7 +36,7 @@ public class Particular extends Cliente {
 
     @Override
     public String toString() {
-        return "Nombre: " + getNombre() +"\nApellidos"+ apellidos+ "\nNIF: " + getNIF() + "\nE-mail: " + getEmail() +"\nFecha de alta: "
+        return "Nombre: " + getNombre() +"\nApellidos"+ apellidos+ "\nNIF: " + getNIF() + "\nE-mail: " + getEmail() +"\nfecha de alta: "
                 + getFecha().toString() + "\nDirección" + getDireccion().toString() + "\nLLamadas: " + getLlamadas().toString() + "\nFacturas: " + getFacturas().toString() ;
     }
 }

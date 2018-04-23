@@ -1,4 +1,4 @@
-package Direccion;
+package direccion;
 
 /**
  * Created by al361888 on 27/02/18.

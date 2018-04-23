@@ -1,4 +1,4 @@
-package Tarifa;
+package tarifa;
 
 public class Mediodia {
 }

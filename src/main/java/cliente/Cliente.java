@@ -1,12 +1,11 @@
 package cliente;
 
-import Direccion.Direccion;
-import Factura.Factura;
-import Fecha.Fecha;
-import Llamada.Llamada;
-import Tarifa.Tarifa;
+import direccion.Direccion;
+import factura.Factura;
+import fecha.Fecha;
+import llamada.Llamada;
+import tarifa.Tarifa;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -110,7 +109,7 @@ public abstract class Cliente implements Fecha{
         this.facturas = facturas;
     }
 
-    public boolean añadirFactura(Factura factura){
+    public boolean anadirFactura(Factura factura){
         if (factura==null)
             return false;
         else{
@@ -134,7 +133,7 @@ public abstract class Cliente implements Fecha{
         this.llamadas = llamadas;
     }
 
-    public boolean añadirLlamada(Llamada llamada){
+    public boolean anadirLlamada(Llamada llamada){
         if (llamada==null)
             return false;
         else{
@@ -147,7 +146,7 @@ public abstract class Cliente implements Fecha{
 
     @Override
     public String toString() {
-        return "Nombre: " + nombre + "\nNIF: " + NIF + "\nE-mail: " + email +"\nFecha de alta: "
+        return "Nombre: " + nombre + "\nNIF: " + NIF + "\nE-mail: " + email +"\nfecha de alta: "
                 + fechaAlta.toString() + "\nDirección" + direccion.toString() + "\nLLamadas: " + llamadas.toString() + "\nFacturas: " + facturas.toString();
     }
 

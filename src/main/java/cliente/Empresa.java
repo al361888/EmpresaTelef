@@ -1,6 +1,6 @@
 package cliente;
 
-import Direccion.Direccion;
+import direccion.Direccion;
 
 import java.util.Date;
 
@@ -24,7 +24,7 @@ public class Empresa extends Cliente {
 
     @Override
     public String toString() {
-        return "Nombre: " + getNombre() + "\nNIF: " + getNIF() + "\nE-mail: " + getEmail() +"\nFecha de alta: "
+        return "Nombre: " + getNombre() + "\nNIF: " + getNIF() + "\nE-mail: " + getEmail() +"\nfecha de alta: "
                 + getFecha().toString() + "\nDirección" + getDireccion().toString() + "\nLLamadas: " + getLlamadas().toString() + "\nFacturas: " + getFacturas().toString();
     }
 }

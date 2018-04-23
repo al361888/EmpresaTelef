@@ -1,4 +1,4 @@
-package Fecha;
+package fecha;
 
 import java.util.Date;
 

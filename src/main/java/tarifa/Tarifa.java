@@ -1,15 +1,18 @@
-package Tarifa;
+package tarifa;
+
+import llamada.Llamada;
+
+import java.io.Serializable;
 
 /**
  * Created by al361888 on 27/02/18.
  */
-public class Tarifa { //Done
+public abstract class Tarifa implements Serializable{ //Done
     private double precio; // €/min
-    double defecto = 0.01; //€/min
 
     //Constructores
     public Tarifa(){
-        precio = defecto;
+        precio = 0.20;
     }
 
     public Tarifa(double precio){
@@ -21,9 +24,8 @@ public class Tarifa { //Done
         return precio;
     }
 
-    public void setPrecio(double nuevo){
-        this.precio = nuevo;
-    }
+    public abstract double costeLlamada(Llamada llamada);
+
 
     @Override
     public String toString(){

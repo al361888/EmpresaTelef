@@ -1,4 +1,4 @@
-package Excepciones;
+package excepciones;
 
 
 public class MiExcepcion extends Exception{

@@ -1,6 +1,6 @@
 package fabrica_clientes;
 
-import Direccion.Direccion;
+import direccion.Direccion;
 import cliente.Empresa;
 import cliente.Particular;
 
