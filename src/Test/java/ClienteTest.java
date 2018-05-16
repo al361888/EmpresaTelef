@@ -1,7 +1,7 @@
-import cliente.Cliente;
-import cliente.Empresa;
-import direccion.Direccion;
-import cliente.Particular;
+import Modelo.cliente.Cliente;
+import Modelo.cliente.Empresa;
+import Modelo.direccion.Direccion;
+import Modelo.cliente.Particular;
 import org.junit.BeforeClass;
 import org.junit.Test;
 

@@ -1,8 +1,8 @@
-import cliente.Cliente;
-import cliente.ClienteManager;
-import cliente.Empresa;
-import direccion.Direccion;
-import cliente.Particular;
+import Modelo.cliente.Cliente;
+import Modelo.cliente.ClienteManager;
+import Modelo.cliente.Empresa;
+import Modelo.direccion.Direccion;
+import Modelo.cliente.Particular;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -40,8 +40,8 @@ public class ClienteManagerTest {
     @Test
     public void borrarClienteTest(){
         lista.nuevoCliente(ousama);
-        assertTrue("Borrando cliente", lista.borrarCliente(ousama));
-        assertFalse("Borrando cliente ya borrado", lista.borrarCliente(ousama));
+        assertTrue("Borrando Modelo.cliente", lista.borrarCliente(ousama));
+        assertFalse("Borrando Modelo.cliente ya borrado", lista.borrarCliente(ousama));
     }
 
     @Test

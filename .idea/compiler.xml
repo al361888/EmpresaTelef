@@ -15,7 +15,6 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="EmpresaTelef" target="1.8" />
-      <module name="Practica1" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

@@ -1,16 +1,16 @@
-import cliente.Cliente;
-import cliente.ClienteManager;
-import cliente.Empresa;
-import cliente.Particular;
-import direccion.Direccion;
-import fabrica_tarifa.FabricaTarifas;
-import llamada.Llamada;
+import Modelo.cliente.Cliente;
+import Modelo.cliente.ClienteManager;
+import Modelo.cliente.Empresa;
+import Modelo.cliente.Particular;
+import Modelo.direccion.Direccion;
+import Modelo.fabrica_tarifa.FabricaTarifas;
+import Modelo.llamada.Llamada;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import tarifa.Basica;
-import tarifa.FinSemana;
-import tarifa.Tarde;
-import tarifa.Tarifa;
+import Modelo.tarifa.Basica;
+import Modelo.tarifa.FinSemana;
+import Modelo.tarifa.Tarde;
+import Modelo.tarifa.Tarifa;
 
 import java.util.Date;
 
