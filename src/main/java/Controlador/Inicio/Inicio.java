@@ -12,6 +12,7 @@ import Modelo.cliente.Empresa;
 import Modelo.cliente.Particular;
 import Modelo.fabrica_clientes.FabricaClientes;
 
+import javax.swing.*;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -375,7 +376,10 @@ public class Inicio {
 
     //MAIN
     public static void main(String[] args) {
-        menu();
+        JFrame ventana = new JFrame("Primera Ventana");
+        ventana.setSize(400, 400);
+        ventana.setVisible(true);
+        //menu();
     }
 
 }
