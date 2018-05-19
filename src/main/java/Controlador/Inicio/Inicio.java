@@ -376,10 +376,7 @@ public class Inicio {
 
     //MAIN
     public static void main(String[] args) {
-        JFrame ventana = new JFrame("Primera Ventana");
-        ventana.setSize(400, 400);
-        ventana.setVisible(true);
-        //menu();
+        menu();
     }
 
 }

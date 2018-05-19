@@ -49,6 +49,8 @@ public class VentanaInicio{
             switch (e.getActionCommand()){
                 case "inicio":
                     System.out.println("has pulsado INICIO");
+                    VentanaMenu.main(null);
+                    ventana.setVisible(false);
                     break;
                 case "mi":
                     System.out.println("has pulsado MI");
