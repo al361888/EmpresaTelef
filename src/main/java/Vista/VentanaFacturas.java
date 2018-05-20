@@ -5,10 +5,8 @@ import java.awt.*;
 
 public class VentanaFacturas extends JPanel {
 
-    public Ventana ventana;
-
-    public void ejecuta(){
-        ventana = new Ventana();
+    private void ejecuta(){
+        Ventana ventana = new Ventana();
         ventana.setTitle("Opciones facturas");
         ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         Container contenedor = ventana.getContentPane();

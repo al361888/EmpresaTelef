@@ -5,10 +5,8 @@ import java.awt.*;
 
 public class VentanaLlamadas extends JPanel {
 
-    public Ventana ventana;
-
-    public void ejecuta(){
-        ventana = new Ventana();
+    private void ejecuta(){
+        Ventana ventana = new Ventana();
         ventana.setTitle("Opciones llamadas");
         ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         Container contenedor = ventana.getContentPane();

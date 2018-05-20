@@ -7,10 +7,8 @@ import java.awt.event.ActionListener;
 
 public class VentanaMenu {
 
-    public Ventana ventana;
-
-    public void ejecuta(){
-        ventana = new Ventana();
+    private void ejecuta(){
+        Ventana ventana = new Ventana();
         ventana.setTitle("Menu");
         Container contenedor = ventana.getContentPane();
 
