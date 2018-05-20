@@ -11,43 +11,55 @@ public class VentanaMenu {
 
     public void ejecuta(){
         ventana = new Ventana();
-        ventana.setTitle("Inicio");
+        ventana.setTitle("Menu");
         Container contenedor = ventana.getContentPane();
 
-        //Panel Norte
-        JPanel panelNorte = new JPanel();
-        panelNorte.add(new JLabel("OPCIONES"));
-        contenedor.add(panelNorte, BorderLayout.NORTH);
+        JPanel panelMenu = new JPanel();
+        JButton clientes = new JButton("Clientes");
+        clientes.setActionCommand("c");
+        clientes.addActionListener(new EscuchadorMenu());
+        panelMenu.add(clientes);
 
-        //Panel Central
-        JPanel panelCentral = new JPanel();
-        JButton op1 = new JButton("Nuevo cliente");
-        op1.setActionCommand("1");
-        op1.addActionListener(new EscuchadorMenu());
-        panelCentral.add(op1);
-        contenedor.add(panelCentral, BorderLayout.CENTER);
+        JButton facturas = new JButton("Facturas");
+        facturas.setActionCommand("f");
+        facturas.addActionListener(new EscuchadorMenu());
+        panelMenu.add(facturas);
 
+        JButton llamadas = new JButton("Llamadas");
+        llamadas.setActionCommand("l");
+        llamadas.addActionListener(new EscuchadorMenu());
+        panelMenu.add(llamadas);
 
-    }
+        JButton salir = new JButton("Salir");
+        salir.setActionCommand("s");
+        salir.addActionListener(new EscuchadorMenu());
+        panelMenu.add(salir);
 
-    public static void main (String[] args) {
-        new VentanaMenu().ejecuta();
+        contenedor.add(panelMenu);
     }
 
     public class EscuchadorMenu implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()){
-                case "1":
-                    System.out.println("has pulsado 1");
+                case "c":
+                    VentanaClientes.main(null);
                     break;
-                case "mi":
-                    System.out.println("has pulsado MI");
+                case "f":
+                    VentanaFacturas.main(null);
                     break;
-                case "donaciones":
-                    System.out.println("Las donaciones están actualmente desactivadas. Prueba más adelante.");
+                case "l":
+                    VentanaLlamadas.main(null);
+                    break;
+                case "s":
+                    System.exit(0);
                     break;
             }
         }
     }
+
+    public static void main (String[] args) {
+        new VentanaMenu().ejecuta();
+    }
+
 }

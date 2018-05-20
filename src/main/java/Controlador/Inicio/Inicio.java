@@ -31,20 +31,20 @@ public class Inicio {
         while (true) {
             System.out.println("----FACTURAPPS----");
             System.out.println("¿Qué quieres hacer? (Pulsa el número correspondiente a la elección deseada)");
-            System.out.println("(1) Nuevo Modelo.cliente ");
-            System.out.println("(2) Borrar Modelo.cliente");
-            System.out.println("(3) Cambiar Modelo.tarifa");
-            System.out.println("(4) Recuperar Modelo.datos asociados a NIF");
+            System.out.println("(1) Nuevo cliente ");
+            System.out.println("(2) Borrar cliente");
+            System.out.println("(3) Cambiar tarifa");
+            System.out.println("(4) Recuperar datos asociados a NIF");
             System.out.println("(5) Lista de clientes");
-            System.out.println("(6) Dar de alta una Modelo.llamada");
-            System.out.println("(7) Listar llamadas del Modelo.cliente");
-            System.out.println("(8) Emitir Modelo.factura del Modelo.cliente");
-            System.out.println("(9) Recuperar Modelo.datos de Modelo.factura");
-            System.out.println("(10) Recuperar facturas del Modelo.cliente");
+            System.out.println("(6) Dar de alta una llamada");
+            System.out.println("(7) Listar llamadas del cliente");
+            System.out.println("(8) Emitir factura del cliente");
+            System.out.println("(9) Recuperar datos de factura");
+            System.out.println("(10) Recuperar facturas del cliente");
             System.out.println("(11) Mostrar clientes que operaron entre dos fechas");
-            System.out.println("(12) Mostrar las llamadas de un Modelo.cliente entre dos fechas");
-            System.out.println("(13) Mostrsr las facturas de un Modelo.cliente entre dos fechas");
-            System.out.println("(14) Salir (guardar Modelo.datos)");
+            System.out.println("(12) Mostrar las llamadas de un cliente entre dos fechas");
+            System.out.println("(13) Mostrar las facturas de un cliente entre dos fechas");
+            System.out.println("(14) Salir (guardar datos)");
             System.out.println("Elige: ");
 
             while (true) {
