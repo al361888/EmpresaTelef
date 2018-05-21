@@ -27,6 +27,12 @@ public class VentanaInicio{
         panelCentral.add(inicio);
         contenedor.add(panelCentral, BorderLayout.CENTER);
 
+        JButton salir = new JButton("Salir");
+        salir.setActionCommand("s");
+        salir.addActionListener(new EscuchadorBotones());
+        panelCentral.add(salir);
+        contenedor.add(panelCentral, BorderLayout.CENTER);
+
         //Panel Sur
         JPanel panelSur = new JPanel();
 
@@ -48,15 +54,18 @@ public class VentanaInicio{
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()){
                 case "inicio":
-                    System.out.println("has pulsado INICIO");
+                    System.out.println("Has pulsado INICIO");
                     VentanaMenu.main(null);
                     ventana.setVisible(false);
                     break;
                 case "mi":
-                    System.out.println("has pulsado MI");
+                    System.out.println("Esta aplicación ha sido desarrollada por Miguel Ligero, alumno de Ingeniería Informática en la UJI.");
                     break;
                 case "donaciones":
                     System.out.println("Las donaciones están actualmente desactivadas. Prueba más adelante.");
+                    break;
+                case "s":
+                    System.exit(0);
                     break;
             }
         }

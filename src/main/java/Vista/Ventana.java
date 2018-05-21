@@ -14,7 +14,7 @@ public class Ventana extends JFrame{
         Dimension resolucion = display.getScreenSize();
         int anchura = resolucion.width;
         int altura = resolucion.height;
-        setLocation(anchura/3, altura/4); // pantalla centrada
+        setLocation(anchura/4, altura/4); // pantalla centrada
     }
 
 

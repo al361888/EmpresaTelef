@@ -27,7 +27,7 @@ public class Inicio {
     private static void menu() {
         cargarDatos();
         Scanner scan = new Scanner(System.in);
-        int eleccion;
+        /*int eleccion;
         while (true) {
             System.out.println("----FACTURAPPS----");
             System.out.println("¿Qué quieres hacer? (Pulsa el número correspondiente a la elección deseada)");
@@ -104,7 +104,7 @@ public class Inicio {
                     System.out.println("Elección no válida.");
                     break;
             }
-        }
+        }*/
     }
 
 
@@ -148,7 +148,7 @@ public class Inicio {
     }
 
     //1
-    private static void altaCliente() {
+    public static void altaCliente() {
         System.out.println("¿Qué tipo de Modelo.cliente eres?");
         System.out.println("(1) Particular");
         System.out.println("(2) Empresa");
@@ -173,24 +173,24 @@ public class Inicio {
     }
 
     //2
-    private static void borradoCliente() {
-        System.out.println("Escribe el DNI del Modelo.cliente que quieras eliminar.");
-        String dniABorrar = inputDato("DNI: ");
-        Cliente bye = listaClientes.encontrarCliente(dniABorrar);
+    public static void borradoCliente(String dni) {
+        //System.out.println("Escribe el DNI del Modelo.cliente que quieras eliminar.");
+        //String dniABorrar = inputDato("DNI: ");
+        Cliente bye = listaClientes.encontrarCliente(dni);
         listaClientes.borrarCliente(bye);
     }
 
     //3
-    private static void cambioTarifa() {
-        System.out.println("Escribe el DNI del Modelo.cliente que quieras cambiar de Modelo.tarifa.");
-        String dni = inputDato("DNI: ");
+    public static void cambioTarifa(String dni, int eleccion) {
+        //System.out.println("Escribe el DNI del Modelo.cliente que quieras cambiar de Modelo.tarifa.");
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         if (cliente != null){
-            System.out.println("¿Qué Modelo.tarifa quieres?");
-            System.out.println("Basica (1)");
-            System.out.println("Tarde (2)");
-            System.out.println("Fin de semana (3)");
-            int eleccion = Integer.parseInt(inputDato("Elige: "));
+            //System.out.println("¿Qué tarifa quieres?");
+            //System.out.println("Basica (1)");
+            //System.out.println("Tarde (2)");
+            //System.out.println("Fin de semana (3)");
+            //int eleccion = Integer.parseInt(inputDato("Elige: "));
             switch (eleccion){
                 case 1:
                     Tarifa tarifa = fabricaTarifas.getBasica();
@@ -212,20 +212,20 @@ public class Inicio {
                     break;
             }
         }else {
-            System.out.println("El Modelo.cliente especificado no existe.");
+            System.out.println("El cliente especificado no existe.");
         }
     }
 
     //4
-    private static void recuperarDatosNIF() {
-        System.out.println("Escribe el DNI del Modelo.cliente del cual quieres saber sus Modelo.datos.");
-        String dni = inputDato("DNI: ");
+    public static void recuperarDatosNIF(String dni) {
+        //System.out.println("Escribe el DNI del Modelo.cliente del cual quieres saber sus Modelo.datos.");
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         cliente.toString();
     }
 
     //5
-    private static void recuperarListaClientes() {
+    public static void recuperarListaClientes() {
         listaClientes.toString();
     }
 
@@ -242,29 +242,30 @@ public class Inicio {
         return tarifa;
     }
     //6
-    private static void altaLlamada(){
+    public static void altaLlamada(String dni, String numero, String f, String tiempo){
         System.out.println("¿De quién quieres dar de alta una Modelo.llamada?");
-        String dni = inputDato("DNI: ");
-        String numero = inputDato("Número al cuál se realizó la Modelo.llamada: ");
-        Date fecha = inputFecha();
-        Double duracion = Double.valueOf(inputDato("Duración de la Modelo.llamada (en segundos): "));
+        //String dni = inputDato("DNI: ");
+        //String numero = inputDato("Número al cuál se realizó la Modelo.llamada: ");
+        Date fecha = inputFechaGenerica(f);
+        //Double duracion = Double.valueOf(inputDato("Duración de la Modelo.llamada (en segundos): "));
+        double duracion = Double.parseDouble(tiempo);
         Cliente cliente = listaClientes.encontrarCliente(dni);
         Llamada llamada = new Llamada(numero,fecha,duracion,tarifaConveniente(fecha));
         cliente.anadirLlamada(llamada);
     }
 
     //7
-    private static void listaLlamadas() {
-        System.out.println("¿De quién quieres ver la lista de llamadas?");
-        String dni = inputDato("DNI: ");
+    public static void listaLlamadas(String dni) {
+        //System.out.println("¿De quién quieres ver la lista de llamadas?");
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         cliente.getLlamadas().toString();
     }
 
     //8
-    private static void importeFactura() {
-        String cod = inputDato("Código de Modelo.factura: ");
-        String dni = inputDato("DNI: ");
+    public static void importeFactura(String cod, String dni) {
+        //String cod = inputDato("Código de Modelo.factura: ");
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         Factura factura = cliente.encontrarFactura(cod);
         double importe = factura.getImporte();
@@ -273,17 +274,17 @@ public class Inicio {
 
 
     //9
-    private static void mostrarFactura() {
-        String cod = inputDato("Código de Modelo.factura: ");
-        String dni = inputDato("DNI: ");
+    public static void mostrarFactura(String cod, String dni) {
+        //String cod = inputDato("Código de Modelo.factura: ");
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         cliente.encontrarFactura(cod).toString();
     }
 
     //10
-    private static void listaFacturas() {
-        System.out.println("¿De quién quieres ver la lista de facturas?");
-        String dni = inputDato("DNI: ");
+    public static void listaFacturas(String dni) {
+        //System.out.println("¿De quién quieres ver la lista de facturas?");
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         cliente.getFacturas().toString();
     }
@@ -302,7 +303,20 @@ public class Inicio {
 
 
     private static Date inputFecha() {
-        String fecha = inputDato("Modelo.fecha(dd/mm/yyyy): ");
+        String fecha = inputDato("fecha(dd/mm/yyyy): ");
+        SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
+        Date result = new Date();
+        try {
+            result = format.parse(fecha);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    //Hecho a causa de la vistaClientes
+    private static Date inputFechaGenerica(String fecha) {
+        //String fecha = inputDato("fecha(dd/mm/yyyy): ");
         SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
         Date result = new Date();
         try {
@@ -314,9 +328,9 @@ public class Inicio {
     }
 
     //11
-    private static void listadoClientes() {
-        Date inicio = inputFecha();
-        Date fin = inputFecha();
+    public static void listadoClientes(String ini, String finale) {
+        Date inicio = inputFechaGenerica(ini);
+        Date fin = inputFechaGenerica(finale);
         HashSet<Cliente> clientes = new HashSet<>();
         listaClientes.getClientes().forEach((k, v) -> clientes.add(v));
         Collection<Cliente> resultado = metodoGenerico(clientes, inicio, fin);
@@ -324,10 +338,10 @@ public class Inicio {
     }
 
     //12
-    private static void listadoLlamadas() {
-        Date inicio = inputFecha();
-        Date fin = inputFecha();
-        String dni = inputDato("DNI: ");
+    public static void listadoLlamadas(String text, String text1, String dni) {
+        Date inicio = inputFechaGenerica(text);
+        Date fin = inputFechaGenerica(text1);
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         HashSet<Llamada> llamadas = cliente.getLlamadas();
         Collection<Llamada> resultado = metodoGenerico(llamadas, inicio, fin);
@@ -335,10 +349,10 @@ public class Inicio {
     }
 
     //13
-    private static void listadoFacturas() {
-        Date inicio = inputFecha();
-        Date fin = inputFecha();
-        String dni = inputDato("DNI: ");
+    public static void listadoFacturas(String ini, String finale, String dni) {
+        Date inicio = inputFechaGenerica(ini);
+        Date fin = inputFechaGenerica(finale);
+        //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
 
         HashMap<String, Factura> facturas = cliente.getFacturas();
