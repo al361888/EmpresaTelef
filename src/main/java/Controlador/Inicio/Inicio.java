@@ -12,7 +12,6 @@ import Modelo.cliente.Empresa;
 import Modelo.cliente.Particular;
 import Modelo.fabrica_clientes.FabricaClientes;
 
-import javax.swing.*;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,8 +24,8 @@ public class Inicio {
     private static FabricaTarifas fabricaTarifas;
 
     private static void menu() {
-        cargarDatos();
-        Scanner scan = new Scanner(System.in);
+        //cargarDatos();
+        //Scanner scan = new Scanner(System.in);
         /*int eleccion;
         while (true) {
             System.out.println("----FACTURAPPS----");
@@ -120,50 +119,50 @@ public class Inicio {
         return eleccion;
     }
 
-    private static void rellenarDireccion(Direccion d) {
-        d.setCp(inputDato("Código postal: "));
-        d.setPoblacion(inputDato("Población: "));
-        d.setProvincia(inputDato("Provincia: "));
+    private static void rellenarDireccion(Direccion d, String cp, String poblacion, String provincia) {
+        d.setCp(cp);
+        d.setPoblacion(poblacion);
+        d.setProvincia(provincia);
     }
 
-    private static void rellenarParticular(Particular p) {
+    private static void rellenarParticular(Particular p, String nif, String nombre, String email,String cp, String poblacion, String provincia, String apellidos) {
         if (p!=null){
-            p.setNIF(inputDato("NIF: "));
-            p.setNombre(inputDato("Nombre: "));
-            p.setApellidos(inputDato("Apellidos: "));
-            p.setEmail(inputDato("Email: "));
-            rellenarDireccion(p.getDireccion());
+            p.setNIF(nif);
+            p.setNombre(nombre);
+            p.setApellidos(apellidos);
+            p.setEmail(email);
+            rellenarDireccion(p.getDireccion(), cp, poblacion, provincia);
         } else
             System.out.println("Parámetro nulo.");
     }
 
-    private static void rellenarEmpresa(Empresa e) { //Optimizar
+    private static void rellenarEmpresa(Empresa e, String nif, String nombre, String email,String cp, String poblacion, String provincia) { //Optimizar
         if(e!=null){
-            e.setNIF(inputDato("NIF: "));
-            e.setNombre(inputDato("Nombre: "));
-            e.setEmail(inputDato("Email: "));
-            rellenarDireccion(e.getDireccion());
+            e.setNIF(nif);
+            e.setNombre(nombre);
+            e.setEmail(email);
+            rellenarDireccion(e.getDireccion(), cp, poblacion, provincia);
         }else
             System.out.println("Parámetro nulo.");
     }
 
     //1
-    public static void altaCliente() {
-        System.out.println("¿Qué tipo de Modelo.cliente eres?");
-        System.out.println("(1) Particular");
-        System.out.println("(2) Empresa");
-        String eleccion;
-        eleccion = inputDato("Escribe el número correspondiente a la opción deseada: ");
+    public static void altaCliente(String eleccion, String nif, String nombre, String email, String cp, String poblacion, String provincia, String apellidos) {
+        //System.out.println("¿Qué tipo de Modelo.cliente eres?");
+        //System.out.println("(1) Particular");
+        //System.out.println("(2) Empresa");
+        //String eleccion;
+        //eleccion = inputDato("Escribe el número correspondiente a la opción deseada: ");
         switch (eleccion) {
             case "1": {
                 Particular nuevo = fabricaClientes.getParticular();
-                rellenarParticular(nuevo);
+                rellenarParticular(nuevo, nif, nombre, email, cp, poblacion, provincia,apellidos);
                 listaClientes.nuevoCliente(nuevo);
                 break;
             }
             case "2": {
                 Empresa nuevo = fabricaClientes.getEmpresa();
-                rellenarEmpresa(nuevo);
+                rellenarEmpresa(nuevo, nif, nombre, email, cp, poblacion, provincia);
                 break;
             }
             default:
@@ -302,7 +301,7 @@ public class Inicio {
     }
 
 
-    private static Date inputFecha() {
+    /*private static Date inputFecha() {
         String fecha = inputDato("fecha(dd/mm/yyyy): ");
         SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
         Date result = new Date();
@@ -312,7 +311,7 @@ public class Inicio {
             e.printStackTrace();
         }
         return result;
-    }
+    }*/
 
     //Hecho a causa de la vistaClientes
     private static Date inputFechaGenerica(String fecha) {
@@ -363,7 +362,7 @@ public class Inicio {
         resultado.toString();
     }
 
-    private static void guardarDatos() {
+    public static void guardarDatos() {
         FileOutputStream fos;
         try {
             fos = new FileOutputStream("Clientes.bin");
@@ -376,7 +375,7 @@ public class Inicio {
     }
 
 
-    private static void cargarDatos() {
+    public static void cargarDatos() {
         FileInputStream fis;
         try {
             fis = new FileInputStream("Clientes.bin");

@@ -1,5 +1,7 @@
 package Vista;
 
+import Controlador.Inicio.Inicio;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,9 +9,9 @@ import java.awt.event.ActionListener;
 
 public class VentanaInicio{
 
-    public Ventana ventana;
+    private Ventana ventana;
 
-    public void ejecuta(){
+    private void ejecuta(){
         ventana = new Ventana();
         ventana.setTitle("Inicio");
         Container contenedor = ventana.getContentPane();
@@ -56,6 +58,7 @@ public class VentanaInicio{
                 case "inicio":
                     System.out.println("Has pulsado INICIO");
                     VentanaMenu.main(null);
+                    Inicio.cargarDatos();
                     ventana.setVisible(false);
                     break;
                 case "mi":

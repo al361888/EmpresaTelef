@@ -57,6 +57,11 @@ public class VentanaClientes extends JPanel {
         op1.add(campo1);
         op1.add(nombre);
 
+        JTextField apellidos = new JTextField(20);
+        JLabel campob = new JLabel("Apellidos");
+        op1.add(campob);
+        op1.add(apellidos);
+
         JTextField nif = new JTextField(20);
         JLabel campo2 = new JLabel("NIF");
         op1.add(campo2);
@@ -82,13 +87,21 @@ public class VentanaClientes extends JPanel {
         op1.add(campo6);
         op1.add(provincia);
 
+        JRadioButton particular = new JRadioButton("Particular",true);
+        op1.add(particular);
+        JRadioButton empresa = new JRadioButton("Empresa",false);
+        op1.add(empresa);
+
+        ButtonGroup grupo1 = new ButtonGroup();
+        grupo1.add(particular);
+        grupo1.add(empresa);
+
         JButton enviar = new JButton("Enviar");
         enviar.addActionListener(e -> {
-            datos.add(nombre.getText());
-            datos.add(email.getText());
-            datos.add(cp.getText());
-            datos.add(poblacion.getText());
-            datos.add(provincia.getText());
+            if(empresa.isSelected()){
+                campob.setEnabled(false);
+                Inicio.altaCliente("2",nif.getText(),nombre.getText(), email.getText(), cp.getText(), poblacion.getText(), provincia.getText(),apellidos.getText());
+            } else Inicio.altaCliente("1",nif.getText(),nombre.getText(), email.getText(), cp.getText(), poblacion.getText(), provincia.getText(),apellidos.getText());
         });
 
         op1.add(enviar);

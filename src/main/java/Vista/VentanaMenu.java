@@ -1,5 +1,7 @@
 package Vista;
 
+import Controlador.Inicio.Inicio;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,22 +20,26 @@ public class VentanaMenu {
         clientes.addActionListener(new EscuchadorMenu());
         panelMenu.add(clientes);
 
+        JPanel panelMenuC = new JPanel();
         JButton facturas = new JButton("Facturas");
         facturas.setActionCommand("f");
         facturas.addActionListener(new EscuchadorMenu());
-        panelMenu.add(facturas);
+        panelMenuC.add(facturas);
 
         JButton llamadas = new JButton("Llamadas");
         llamadas.setActionCommand("l");
         llamadas.addActionListener(new EscuchadorMenu());
-        panelMenu.add(llamadas);
+        panelMenuC.add(llamadas);
 
+        JPanel panelMenuS = new JPanel();
         JButton salir = new JButton("Salir");
         salir.setActionCommand("s");
         salir.addActionListener(new EscuchadorMenu());
-        panelMenu.add(salir);
+        panelMenuS.add(salir,BorderLayout.SOUTH);
 
-        contenedor.add(panelMenu);
+        contenedor.add(panelMenu,BorderLayout.NORTH);
+        contenedor.add(panelMenuC, BorderLayout.CENTER);
+        contenedor.add(panelMenuS, BorderLayout.SOUTH);
     }
 
     public class EscuchadorMenu implements ActionListener {
@@ -50,6 +56,7 @@ public class VentanaMenu {
                     VentanaLlamadas.main(null);
                     break;
                 case "s":
+                    Inicio.guardarDatos();
                     System.exit(0);
                     break;
             }

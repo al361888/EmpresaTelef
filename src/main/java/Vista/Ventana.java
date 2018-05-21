@@ -8,6 +8,7 @@ public class Ventana extends JFrame{
     public Ventana() {
         setSize(400, 400);
         setVisible(true);
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         Toolkit display = Toolkit.getDefaultToolkit();

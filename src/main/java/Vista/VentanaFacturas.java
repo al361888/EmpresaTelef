@@ -10,6 +10,7 @@ public class VentanaFacturas extends JPanel {
     private void ejecuta(){
         Ventana ventana = new Ventana();
         ventana.setTitle("Opciones facturas");
+        ventana.setSize(900,400);
         ventana.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         Container contenedor = ventana.getContentPane();
         JTabbedPane panel = new JTabbedPane();
