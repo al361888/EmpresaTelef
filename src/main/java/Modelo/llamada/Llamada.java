@@ -4,21 +4,15 @@ import Modelo.excepciones.MiExcepcion;
 import Modelo.fecha.Fecha;
 import Modelo.tarifa.Tarifa;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Llamada implements Fecha{
     private String numero;
-    private Date fecha;
+    private LocalDateTime fecha;
     private double duracion; //No muy claro el tipo de dato
     private double importe;
 
-    public Llamada(){
-        numero = null;
-        fecha = null;
-        duracion = 0;
-    }
-
-    public Llamada(String numero, Date fecha, Double duracion, Tarifa tarifa){
+    public Llamada(String numero, LocalDateTime fecha, Double duracion, Tarifa tarifa){
         this.numero = numero;
         this.fecha = fecha;
         this.duracion = duracion;
@@ -26,11 +20,11 @@ public class Llamada implements Fecha{
     }
 
     @Override
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDateTime fecha) {
             this.fecha = fecha;
     }
 

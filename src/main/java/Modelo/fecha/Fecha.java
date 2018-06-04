@@ -1,11 +1,11 @@
 package Modelo.fecha;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by al361888 on 27/02/18.
  */
 public interface Fecha {
 
-    public Date getFecha();
+    public LocalDateTime getFecha();
 }

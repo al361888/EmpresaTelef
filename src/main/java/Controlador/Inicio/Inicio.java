@@ -15,6 +15,8 @@ import Modelo.fabrica_clientes.FabricaClientes;
 import java.io.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 public class Inicio {
@@ -24,7 +26,7 @@ public class Inicio {
     private static FabricaTarifas fabricaTarifas;
 
     private static void menu() {
-        //cargarDatos();
+        cargarDatos();
         //Scanner scan = new Scanner(System.in);
         /*int eleccion;
         while (true) {
@@ -107,7 +109,7 @@ public class Inicio {
     }
 
 
-    private static String inputDato(String mensaje) {
+    /*private static String inputDato(String mensaje) {
         Scanner scan = new Scanner(System.in);
         String eleccion = "";
         try {
@@ -117,7 +119,7 @@ public class Inicio {
             return eleccion;
         }
         return eleccion;
-    }
+    }*/
 
     private static void rellenarDireccion(Direccion d, String cp, String poblacion, String provincia) {
         d.setCp(cp);
@@ -228,16 +230,16 @@ public class Inicio {
         listaClientes.toString();
     }
 
-    private static Tarifa tarifaConveniente(Date fecha){
-        int hora = fecha.getHours();
-        int dia = fecha.getDay();
+    private static Tarifa tarifaConveniente(LocalDateTime fecha){
+        int hora = fecha.getHour();
+        int dia = fecha.getDayOfWeek().getValue();
         Tarifa tarifa = fabricaTarifas.getBasica();
 
-        if (dia == 0)
+        if (dia == 6 || dia == 7)
             return fabricaTarifas.getFinSemana(tarifa);
         else if(hora >12 && hora<23)
             return fabricaTarifas.getTarde(tarifa);
-        
+
         return tarifa;
     }
     //6
@@ -245,7 +247,7 @@ public class Inicio {
         System.out.println("¿De quién quieres dar de alta una Modelo.llamada?");
         //String dni = inputDato("DNI: ");
         //String numero = inputDato("Número al cuál se realizó la Modelo.llamada: ");
-        Date fecha = inputFechaGenerica(f);
+        LocalDateTime fecha = inputFechaGenerica(f);
         //Double duracion = Double.valueOf(inputDato("Duración de la Modelo.llamada (en segundos): "));
         double duracion = Double.parseDouble(tiempo);
         Cliente cliente = listaClientes.encontrarCliente(dni);
@@ -290,10 +292,10 @@ public class Inicio {
 
 
     //FUNCIÓN GENÉRICA
-    private static <T extends Fecha> Collection<T> metodoGenerico(Collection<T> c, Date inicio, Date fin) {
+    private static <T extends Fecha> Collection<T> metodoGenerico(Collection<T> c, LocalDateTime inicio, LocalDateTime fin) {
         Collection<T> datos = new HashSet<>();
         for (T elemento : c) {
-            if (elemento.getFecha().after(inicio) && elemento.getFecha().before(fin)) {
+            if (elemento.getFecha().isAfter(inicio) && elemento.getFecha().isBefore(fin)) {
                 datos.add(elemento);
             }
         }
@@ -314,7 +316,7 @@ public class Inicio {
     }*/
 
     //Hecho a causa de la vistaClientes
-    private static Date inputFechaGenerica(String fecha) {
+    private static LocalDateTime inputFechaGenerica(String fecha) {
         //String fecha = inputDato("fecha(dd/mm/yyyy): ");
         SimpleDateFormat format = new SimpleDateFormat("dd/mm/yyyy");
         Date result = new Date();
@@ -323,13 +325,13 @@ public class Inicio {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return result;
+        return LocalDateTime.ofInstant(result.toInstant(), ZoneId.systemDefault());
     }
 
     //11
     public static void listadoClientes(String ini, String finale) {
-        Date inicio = inputFechaGenerica(ini);
-        Date fin = inputFechaGenerica(finale);
+        LocalDateTime inicio = inputFechaGenerica(ini);
+        LocalDateTime fin = inputFechaGenerica(finale);
         HashSet<Cliente> clientes = new HashSet<>();
         listaClientes.getClientes().forEach((k, v) -> clientes.add(v));
         Collection<Cliente> resultado = metodoGenerico(clientes, inicio, fin);
@@ -338,8 +340,8 @@ public class Inicio {
 
     //12
     public static void listadoLlamadas(String text, String text1, String dni) {
-        Date inicio = inputFechaGenerica(text);
-        Date fin = inputFechaGenerica(text1);
+        LocalDateTime inicio = inputFechaGenerica(text);
+        LocalDateTime fin = inputFechaGenerica(text1);
         //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
         HashSet<Llamada> llamadas = cliente.getLlamadas();
@@ -349,8 +351,8 @@ public class Inicio {
 
     //13
     public static void listadoFacturas(String ini, String finale, String dni) {
-        Date inicio = inputFechaGenerica(ini);
-        Date fin = inputFechaGenerica(finale);
+        LocalDateTime inicio = inputFechaGenerica(ini);
+        LocalDateTime fin = inputFechaGenerica(finale);
         //String dni = inputDato("DNI: ");
         Cliente cliente = listaClientes.encontrarCliente(dni);
 
@@ -391,5 +393,4 @@ public class Inicio {
     public static void main(String[] args) {
         menu();
     }
-
 }

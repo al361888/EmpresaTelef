@@ -7,7 +7,7 @@ import Modelo.llamada.Llamada;
 import Modelo.tarifa.Basica;
 import Modelo.tarifa.Tarifa;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -19,7 +19,7 @@ public abstract class Cliente implements Fecha{
     private String nombre;
     private String NIF;
     private String email;
-    private Date fechaAlta;
+    private LocalDateTime fechaAlta;
     private Direccion direccion;
     private Tarifa tarifa;
     private HashSet<Llamada> llamadas;
@@ -30,7 +30,7 @@ public abstract class Cliente implements Fecha{
         nombre = null;
         NIF = null;
         email = null;
-        fechaAlta = new Date();
+        fechaAlta = LocalDateTime.now();
         direccion = new Direccion();
         tarifa = new Basica();
         llamadas = new HashSet<Llamada>();
@@ -41,7 +41,7 @@ public abstract class Cliente implements Fecha{
         this.nombre = nombre;
         this.NIF = NIF;
         this.email = email;
-        this.fechaAlta = new Date();
+        this.fechaAlta = LocalDateTime.now();
         this.direccion = direccion;
         this.tarifa = new Basica();
         this.llamadas = new HashSet<>();
@@ -50,7 +50,7 @@ public abstract class Cliente implements Fecha{
 
     //Métodos
     @Override
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fechaAlta;
     }
 
@@ -78,11 +78,11 @@ public abstract class Cliente implements Fecha{
         this.NIF = NIF;
     }
 
-    public Date getFechaAlta() {
+    public LocalDateTime getFechaAlta() {
         return fechaAlta;
     }
 
-    public void setFechaAlta(Date fechaAlta) {
+    public void setFechaAlta(LocalDateTime fechaAlta) {
         this.fechaAlta = fechaAlta;
     }
 

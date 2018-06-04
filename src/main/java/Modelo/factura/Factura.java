@@ -4,14 +4,14 @@ package Modelo.factura;
 import Modelo.fecha.Fecha;
 import Modelo.tarifa.Tarifa;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 public class Factura implements Fecha{
     private String cod; //Único de cada Modelo.factura
     private Tarifa tarifa; //(€/min)
-    private Date fechaEmision;
-    private Date fechaInicio;
-    private Date fechafin;
+    private LocalDateTime fechaEmision;
+    private LocalDateTime fechaInicio;
+    private LocalDateTime fechafin;
     private double importe;
 
     public String getCod() {
@@ -31,27 +31,27 @@ public class Factura implements Fecha{
     }
 
     @Override
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fechaEmision;
     }
 
-    public void setFecha(Date fechaEmision) {
+    public void setFecha(LocalDateTime fechaEmision) {
         this.fechaEmision = fechaEmision;
     }
 
-    public Date getFechaInicio() {
+    public LocalDateTime getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDateTime fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 
-    public Date getFechafin() {
+    public LocalDateTime getFechafin() {
         return fechafin;
     }
 
-    public void setFechafin(Date fechafin) {
+    public void setFechafin(LocalDateTime fechafin) {
         this.fechafin = fechafin;
     }
 

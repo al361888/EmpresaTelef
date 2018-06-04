@@ -2,7 +2,7 @@ package Modelo.cliente;
 
 import Modelo.direccion.Direccion;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 /**
  * Created by al361888 on 27/02/18.
@@ -30,7 +30,7 @@ public class Particular extends Cliente {
     }
 
     @Override
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return super.getFecha();
     }
 

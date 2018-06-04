@@ -5,12 +5,12 @@ import Controlador.Inicio.Inicio;
 import javax.swing.*;
 import java.awt.*;
 
-import java.util.ArrayList;
+//import java.util.ArrayList;
 
 
 public class VentanaClientes extends JPanel {
 
-    private ArrayList<String> datos;
+    //private ArrayList<String> datos;
 
     private void ejecuta(){
         Ventana ventana = new Ventana();
