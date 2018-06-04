@@ -5,11 +5,11 @@ import java.awt.*;
 
 public class Ventana extends JFrame{
 
-    public Ventana() {
+    Ventana() {
         setSize(400, 400);
         setVisible(true);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         Toolkit display = Toolkit.getDefaultToolkit();
         Dimension resolucion = display.getScreenSize();

@@ -237,7 +237,7 @@ public class Inicio {
 
         if (dia == 6 || dia == 7)
             return fabricaTarifas.getFinSemana(tarifa);
-        else if(hora >12 && hora<23)
+        else if(hora >17)
             return fabricaTarifas.getTarde(tarifa);
 
         return tarifa;

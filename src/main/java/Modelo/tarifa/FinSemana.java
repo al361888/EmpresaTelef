@@ -11,8 +11,10 @@ public class FinSemana extends Oferta{
     public double costeLlamada(Llamada llamada) {
         double anterior = getTarifa().costeLlamada(llamada);
         double nuevo = llamada.getDuracion()*getPrecio();
-        if(anterior > nuevo)
+        if(anterior > nuevo){
+            if(llamada.getFecha().getDayOfWeek().getValue()==6 || llamada.getFecha().getDayOfWeek().getValue()==7)
             return nuevo;
+        }
         return anterior;
     }
 }

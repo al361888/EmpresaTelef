@@ -12,8 +12,11 @@ public class Tarde extends Oferta{
     public double costeLlamada(Llamada llamada) {
         double anterior = getTarifa().costeLlamada(llamada);
         double nuevo = llamada.getDuracion()*getPrecio();
-        if(anterior > nuevo)
+        if(anterior > nuevo){
+            if(llamada.getFecha().getHour() >= 17)
             return nuevo;
+        }
+
         return anterior;
     }
 }
